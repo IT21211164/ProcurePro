@@ -1,7 +1,26 @@
 const orderModel = require('../models/order')
 const asyncHandler = require('express-async-handler')
 
+const addOrder = asyncHandler( async(req,res) => {
 
+    const {siteLocation ,totalAmount ,status} = req.body
+
+    const response = await orderModel.create({
+        siteLocation: siteLocation,
+        totalAmount: totalAmount,
+        status: status
+    })
+
+    if(response){
+        res.status(201).json({
+            id: response._id,
+
+        })
+    }
+    else{
+        res.status(403).json('article could not be created!')
+    }
+})
 
 // read a blog
 const readOrder = asyncHandler(async(req,res)=>{
@@ -22,7 +41,7 @@ const readOrder = asyncHandler(async(req,res)=>{
 const displayOrders = asyncHandler(async(req,res)=>{
     const status = req.params.status
     console.log(status);
-    const response = await orderModel.find({ status: status });
+    const response = await orderModel.find({status:status});
     if(response){
         res.status(200).json(response)
     }
@@ -67,6 +86,7 @@ const deleteBlog = asyncHandler(async(req,res)=>{
 
 
 module.exports = {
+    addOrder,
     readOrder,
     displayOrders
 }

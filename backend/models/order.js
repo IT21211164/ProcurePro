@@ -9,6 +9,6 @@ const orderTestSchema = new mongoose.Schema({
   { type: String, required: true },
 });
 
-const order = mongoose.model("temporder", orderTestSchema);
+const order = mongoose.model("torder", orderTestSchema);
 
 module.exports = order;

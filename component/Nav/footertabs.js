@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, Image, View, TouchableOpacity } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
-import { Divider } from "react-native-elements";
+
 import { useNavigation, useRoute } from "@react-navigation/native"; // Import the navigation hook
 
 const FooterTab = () => {
@@ -34,56 +34,43 @@ const FooterTab = () => {
 
   return (
     <>
-      <Divider width={1} />
+
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          backgroundColor:"white",
-          padding:12
+          backgroundColor:"#f6d155",
+          padding:30,
+          paddingEnd: 20,
+          paddingBottom: 2,
+          paddingTop:15
         }}
       >
         <TouchableOpacity onPress={navigateToHome}>
           <>
-            <FontAwesome
-              name="home"
-              size={30}
-              style={{ marginBottom: 3, alignSelf: "center", ...tabStyle("SiteManagerHomeScreen") }}
-            />
+            <Image source={require("../../assets/home.png")}
+               style = {{width : 30 , height: 30, alignSelf: "center"}}
+             ></Image>
             <Text style={{ fontSize: 16, alignSelf: "center", ...tabStyle("SiteManagerHomeScreen") }}>Home</Text>
           </>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={navigateToSites}>
-          <>
-            <FontAwesome
-              name="sitemap"
-              size={30}
-              style={{ marginBottom: 3, alignSelf: "center", ...tabStyle("SiteScreen") }}
-            />
-            <Text style={{ fontSize: 16, alignSelf: "center", ...tabStyle("SiteScreen") }}>Sites</Text>
-          </>
-        </TouchableOpacity>
 
-        <TouchableOpacity onPress={navigateToOrders}>
+        <TouchableOpacity onPress={navigateToOrders} style = {{marginLeft:15}}>
           <>
-            <FontAwesome
-              name="box"
-              size={30}
-              style={{ marginBottom: 3, alignSelf: "center", ...tabStyle("OrderScrren") }}
-            />
+            <Image source={require("../../assets/order.png")}
+               style = {{width : 30 , height: 30, alignSelf: "center"}}
+            ></Image>
             <Text style={{ fontSize: 16, alignSelf: "center", ...tabStyle("OrderScrren") }}>Orders</Text>
           </>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={navigateToNotifications}>
           <>
-            <FontAwesome
-              name="bell"
-              size={30}
-              style={{ marginBottom: 3, alignSelf: "center", ...tabStyle("notificationScreen") }}
-            />
-            <Text style={{ fontSize: 16, alignSelf: "center", ...tabStyle("notificationScreen") }}>Notification</Text>
+            <Image source={require("../../assets/notification.png")}
+               style = {{width : 30 , height: 30, alignSelf: "center"}}
+            ></Image>
+            <Text style={{ fontSize: 16, alignSelf: "center", ...tabStyle("notificationScreen") }}>Notifications</Text>
           </>
         </TouchableOpacity>
       </View>

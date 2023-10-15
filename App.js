@@ -5,6 +5,8 @@ import SignIn from "./screens/signIn";
 import SiteManagerHomeScreen from "./screens/siteManagerHomeScreen";
 import SupplierHomeScreen from "./screens/supplierHomeScreen"
 import OrderScreen from "./screens/orderScreen"
+import OrderDetailsScreen from "./screens/orderDetailsScreen"
+import CreateInvoiceScreen from "./screens/createInvoiceScreen"
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +22,8 @@ export default function App() {
     <Stack.Screen name = "SiteManagerHomeScreen" component = {SiteManagerHomeScreen} />
     <Stack.Screen name = "SupplierHomeScreen" component = {SupplierHomeScreen} />
     <Stack.Screen name = "OrderScreen" component = {OrderScreen} />
+    <Stack.Screen name = "OrderDetailsScreen" component = {OrderDetailsScreen} />
+    <Stack.Screen name = "CreateInvoiceScreen" component = {CreateInvoiceScreen} />
 
   </Stack.Navigator>
 

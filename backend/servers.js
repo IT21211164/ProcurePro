@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/auth', authRoutes);
-app.use('/orders', require('./routes/order_route'));
+app.use('/api/orders', require('./routes/order_route'));
 
 
 
