@@ -21,7 +21,9 @@ const OrderScreen = () => {
         navigation.navigate("OrderDetailsScreen");
     };
     
-
+    const navigateToNewOrderDetails = () => {
+        navigation.navigate("NewOrderDetailsScreen");
+    };
 
 
     const styles1 = StyleSheet.create({
@@ -203,19 +205,21 @@ const OrderScreen = () => {
             </View>
                 
             <View style={{ height: 400 , padding :20 , alignItems:"center"}}>
+
+                <TouchableOpacity style={styles3.container} onPress={navigateToNewOrderDetails}>
+                    <Text style={styles4.amount}>248500.00</Text>
+                    <Text style={styles4.site}>Galle</Text>   
+
+                    <Text style={styles4.status}></Text>
+                </TouchableOpacity>
                 
                 <TouchableOpacity style={styles3.container} onPress={navigateToOrderDetails}>
-                    <Text style={styles4.amount}>126000.00</Text>
+                    <Text style={styles4.amount}>128600.00</Text>
                     <Text style={styles4.site}>Colombo</Text>   
 
                     <Text style={styles4.status}>Accepted</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles3.container}>
-                    <Text style={styles4.amount}>250000.00</Text>
-                    <Text style={styles4.site}>Galle</Text>   
-
-                    <Text style={styles4.status}>Accepted</Text>
-                </TouchableOpacity>
+                
                 <TouchableOpacity style={styles3.container}>
                     <Text style={styles4.amount}>98000.00</Text>
                     <Text style={styles4.site}>Malabe</Text>   

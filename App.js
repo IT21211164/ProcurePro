@@ -3,10 +3,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import SignIn from "./screens/signIn";
 import SiteManagerHomeScreen from "./screens/siteManagerHomeScreen";
-import SupplierHomeScreen from "./screens/supplierHomeScreen"
-import OrderScreen from "./screens/orderScreen"
-import OrderDetailsScreen from "./screens/orderDetailsScreen"
-import CreateInvoiceScreen from "./screens/createInvoiceScreen"
+import SupplierHomeScreen from "./screens/SupplierHomeScreen"
+import OrderScreen from "./screens/OrderScreen"
+import OrderDetailsScreen from "./screens/OrderDetailsScreen"
+import CreateInvoiceScreen from "./screens/CreateInvoiceScreen"
+import NewOrderDetailsScreen from "./screens/NewOrderDetailsScreen"
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
     <Stack.Screen name = "OrderScreen" component = {OrderScreen} />
     <Stack.Screen name = "OrderDetailsScreen" component = {OrderDetailsScreen} />
     <Stack.Screen name = "CreateInvoiceScreen" component = {CreateInvoiceScreen} />
+    <Stack.Screen name = "NewOrderDetailsScreen" component = {NewOrderDetailsScreen} />
 
   </Stack.Navigator>
 

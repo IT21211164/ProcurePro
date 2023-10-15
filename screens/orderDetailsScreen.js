@@ -7,7 +7,7 @@ import axiosInstance from "./api/axios";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-const orderDetailsScreen = () => {
+const OrderDetailsScreen = () => {
     const styles = StyleSheet.create({
         container: {
             backgroundColor: "#FFC436",
@@ -215,4 +215,4 @@ const orderDetailsScreen = () => {
     );
 }
 
-export default orderDetailsScreen;
+export default OrderDetailsScreen;

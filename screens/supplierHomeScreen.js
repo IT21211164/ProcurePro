@@ -8,7 +8,7 @@ import SignInImage from "../component/signUp_userInputs/signUpImage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import FooterTabs from "../component/Nav/footertabs";
 
-const SignIn = () => {
+const SupplierHomeScreen = () => {
 
 
     return (
@@ -39,4 +39,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default SupplierHomeScreen;

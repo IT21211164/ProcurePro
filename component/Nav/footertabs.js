@@ -39,7 +39,7 @@ const FooterTab = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          backgroundColor:"#f6d155",
+          backgroundColor:"#f7d76e",
           padding:30,
           paddingEnd: 20,
           paddingBottom: 2,
