@@ -122,12 +122,18 @@ const CreateInvoiceScreen = () => {
                 <Text style={{alignSelf:"center", padding:12, marginTop:20, marginBottom:10, fontSize:24, fontWeight:"500"}}>Create Invoice</Text>
 
                 <View style={{backgroundColor:"white", padding:8, marginLeft:15, marginRight:15, borderRadius:10}}>
-                    < UserInputs name = "From" value = {from} setValue = {setFrom} />
-                    < UserInputs name = "To" value = {to} setValue = {setTo}  />
+                    < UserInputs name = "Bill From" value = {from} setValue = {setFrom} />
+                    < UserInputs name = "Bill To" value = {to} setValue = {setTo}  />
                 </View>
 
                 <View style={{backgroundColor:"white", padding:12, margin:15,marginTop:8,marginBottom:8, borderRadius:10}}>
-                    <Text style={{fontWeight:"500", fontSize:15}}>Order Items Information</Text>
+                    <Text style={{fontWeight:"500", fontSize:15}}>Order Information</Text>
+
+                    <View style={{flexDirection:'row', padding:10, alignSelf: "center"}}>
+                        <Text style={{marginTop:10, marginRight:14, fontWeight:"500"}}>Ref No</Text>
+                        <Text style={{marginTop:10, marginLeft:45, fontWeight:"500"}}>652b2a321242575ba196916e</Text>
+                    </View>
+
                     <View style={{flexDirection:'row', padding:10, alignSelf: "center"}}>
                         <Text style={{marginTop:10, marginRight:14}}>Item</Text>
                         <Text style={{marginTop:10, marginLeft:150}}>Quantity</Text>
@@ -135,7 +141,7 @@ const CreateInvoiceScreen = () => {
                     </View>
 
 
-                    <View style={{flexDirection:'row', padding:10, marginTop:10, backgroundColor:"#FFFAF0", width:310}}>
+                    <View style={{flexDirection:'row', padding:10, marginTop:5, backgroundColor:"#FFFAF0", width:310}}>
                         <Text style={{marginTop:10,width:140}}>Holcim Cement (50kg)</Text>
 
                         <View  style={{flexDirection:'row',marginTop:0,end:-55,  alignSelf:"flex-end"}}>
@@ -144,7 +150,7 @@ const CreateInvoiceScreen = () => {
                         </View>
                     </View>
 
-                    <View style={{flexDirection:'row', padding:10, marginTop:10, backgroundColor:"#FFFAF0"}}>
+                    <View style={{flexDirection:'row', padding:10, marginTop:5, backgroundColor:"#FFFAF0"}}>
                         <Text style={{marginTop:10, width:140}}>Red Bricks</Text>
 
                         <View  style={{flexDirection:'row',marginTop:0, end:-55}}>
@@ -153,7 +159,7 @@ const CreateInvoiceScreen = () => {
                         </View>
                     </View>
 
-                    <View style={{flexDirection:'row', padding:10, marginTop:10, backgroundColor:"#FFFAF0"}}>
+                    <View style={{flexDirection:'row', padding:10, marginTop:5, backgroundColor:"#FFFAF0"}}>
                         <Text style={{marginTop:10, width:140}}>Rhino Roofing Sheet</Text>
 
                         <View  style={{flexDirection:'row',marginTop:0, end:-55}}>

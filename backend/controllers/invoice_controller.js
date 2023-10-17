@@ -1,15 +1,25 @@
-const orderModel = require('../models/order')
+const invoiceModel = require('../models/invoice')
 const asyncHandler = require('express-async-handler')
 
-const addOrder = asyncHandler( async(req,res) => {
 
-    const {siteLocation ,totalAmount ,status} = req.body
+const addInvoice = asyncHandler( async(req,res) => {
 
-    const response = await orderModel.create({
-        siteLocation: siteLocation,
-        totalAmount: totalAmount,
-        status: status
+    const {orderNo ,date ,billFrom, billTo, totalAmount} = req.body
+
+    const existing = await invoiceModel.findOne({orderNo})
+    if(existing){
+        throw new Error(`An invoice is already created for Order Number ${orderNo}`)
+    }
+
+    const response = await invoiceModel.create({
+        orderNo: orderNo,
+        date:date,
+        billFrom:billFrom,
+        billTo:billTo,
+        totalAmount: totalAmount
     })
+
+
 
     if(response){
         res.status(201).json({
@@ -18,11 +28,14 @@ const addOrder = asyncHandler( async(req,res) => {
         })
     }
     else{
-        res.status(403).json('article could not be created!')
+        res.status(403).json('invoice could not be created!')
     }
 })
+module.exports = {
+    addInvoice
+}
 
-// read a blog
+/*
 const readOrder = asyncHandler(async(req,res)=>{
 
     const id = req.params.id
@@ -38,7 +51,6 @@ const readOrder = asyncHandler(async(req,res)=>{
 })
 
 
-// read all available blogs
 const displayOrders = asyncHandler(async(req,res)=>{
     const status = req.params.status
     console.log(status);
@@ -50,39 +62,11 @@ const displayOrders = asyncHandler(async(req,res)=>{
         res.status(401).json('something is wrong orders can not fetch')
     }
 })
-/*
-const displayOrders = asyncHandler(async(req,res)=>{
-
-    const response = await orderModel.find();
-    if(response){
-        res.status(200).json(response)
-    }
-    else{
-        res.status(401).json('something is wrong orders can not fetch')
-    }
-})
 
 
-const getAllArticles = asyncHandler(async (req, res) => {
-    try {
-        // Retrieve all articles from the database
-        const articles = await articleModel.find();
-
-        if (articles.length > 0) {
-            res.status(200).json(articles);
-        } /*else {
-            res.status(404).json({ message: 'No articles found.' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error while retrieving articles.' });
-    }
-});*/
-
-// update blog details
 const updateBlog = asyncHandler(async(req,res)=>{
     const id = req.params.id 
-    
-    // check whether the blog is existing for update process
+ 
     const checkInstance = await blogModel.findById(id)
 
     if(checkInstance){
@@ -100,7 +84,7 @@ const updateBlog = asyncHandler(async(req,res)=>{
 
 })
 
-// delete a blog
+
 const deleteBlog = asyncHandler(async(req,res)=>{
     const id = req.params.id 
     const response = await blogModel.findByIdAndDelete(id)
@@ -110,11 +94,9 @@ const deleteBlog = asyncHandler(async(req,res)=>{
     else{
         res.status(400).json({error: 'record deleted'})
     }
-})
+})*/
 
-
+/*
 module.exports = {
-    addOrder,
-    readOrder,
-    displayOrders
-}
+    invoice_controller,
+}*/

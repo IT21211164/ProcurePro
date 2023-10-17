@@ -130,12 +130,12 @@ const OrderScreen = () => {
     const [orders, setOrders] = useState([]);
     const [status, setStatus] = useState("Approved");
 
-    /*function getOrders(){
-        axios.get(`http://localhost:3000/orders/displayorders/${status}`).then((res)=>{
+    function getOrders(){
+        axios.get(`http://192.168.8.101:3000/api/orders/displayorders/${status}`).then((res)=>{
             console.log(res.data);
         setOrders(res.data);
         }).catch((err)=>{
-            alert("sssd");
+            alert(err);
         })
     }
 
@@ -143,7 +143,7 @@ const OrderScreen = () => {
         getOrders();
     }, [])
 
-
+/*
     const getOrders = async(e) => {
 
         const response = await axiosInstance.post(`/orders/displayorders/${status}`).then((res)=>{
@@ -179,7 +179,7 @@ const OrderScreen = () => {
                 </Text>
                 </View>
               
-                    {/*}
+                  
                     <FlatList 
                             data={orders}
                             keyExtractor={(item) => item._id}
@@ -190,8 +190,8 @@ const OrderScreen = () => {
                                
                             </View>
                             )}
-                    />*/}
-
+                    />
+{/*
             <View style={{flexDirection: 'row', marginLeft:17}}>
                 <TouchableOpacity style={styles5.column}>
                     <Text style={styles5.text}>All Orders</Text>
@@ -252,7 +252,7 @@ const OrderScreen = () => {
                 </TouchableOpacity>
 
                
-            </View>
+                </View>   */}
       
 
             <SafeAreaView style={{

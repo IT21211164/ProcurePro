@@ -66,11 +66,11 @@ const OrderDetailsScreen = () => {
     });
 
 
-   
+   /*
     const [orders, setOrders] = useState([]);
     const [status, setStatus] = useState("Approved");
 
-    /*function getOrders(){
+    function getOrders(){
         axios.get(`http://localhost:3000/orders/displayorders/${status}`).then((res)=>{
             console.log(res.data);
         setOrders(res.data);
@@ -81,9 +81,9 @@ const OrderDetailsScreen = () => {
 
     useEffect(()=>{
         getOrders();
-    }, [])
+    }, [])*/
 
-
+/*
     const getOrders = async(e) => {
 
         const response = await axiosInstance.post(`/orders/displayorders/${status}`).then((res)=>{

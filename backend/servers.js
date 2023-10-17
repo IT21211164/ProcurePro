@@ -14,10 +14,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/auth', authRoutes);
 app.use('/api/orders', require('./routes/order_route'));
-
+app.use('/api/invoice', require('./routes/invoice_route'));
+//app.use('/api/invoice', require('./controllers'));
 
 
 app.use(errorHandler)
-app.listen(PORT , ()=>{
+app.listen(PORT , '0.0.0.0', ()=>{
     console.log(`🤖 Server is up and running on port ${PORT} 🤖`);
 })
