@@ -2,6 +2,9 @@ const cors = require('cors')
 const dbConnect = require('./config/dbConnect')
 const express = require('express')
 const errorHandler  =require('./middleware/errorMiddleware')
+const orderRoutes = require("./routes/orderRoutes");
+const driverRoutes = require("./routes/driverRoutes");
+const deliveryAdviceNoteRoutes = require("./routes/deliveryAdviceRoutes");
 require('dotenv').config()
 
 const app = express()
@@ -13,6 +16,9 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/auth', authRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/drivers", driverRoutes);
+app.use("/api/deliveryAdviceNotes", deliveryAdviceNoteRoutes);
 
 
 

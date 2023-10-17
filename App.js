@@ -8,7 +8,8 @@ import notificationScreen from "./screens/notificationScreen";
 import OrderScrren from "./screens/orderScreen";
 import SiteScreen from "./screens/sitesScreen";
 import SiteInfo from "./screens/siteInfo";
-
+import DeliveryAdviceNoteForm from "./screens/deliveryAdviceNoteForm";
+import AddDriverForm from "./screens/addDriverForm";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,7 @@ export default function App() {
 <NavigationContainer>
 
 
-  <Stack.Navigator initialRouteName="SiteManagerHomeScreen" screenOptions={{headerShown: false}}>
+  <Stack.Navigator initialRouteName="DeliveryAdviceNoteForm" screenOptions={{headerShown: false}}>
 
     <Stack.Screen name = "SignIn" component = {SignIn} />
     <Stack.Screen name = "SiteManagerHomeScreen" component = {SiteManagerHomeScreen} />
@@ -27,6 +28,8 @@ export default function App() {
     <Stack.Screen name = "OrderScrren" component = {OrderScrren} />
     <Stack.Screen name = "SiteScreen" component = {SiteScreen} />
     <Stack.Screen name = "SiteInfo" component = {SiteInfo} />
+    <Stack.Screen name = "DeliveryAdviceNoteForm" component= {DeliveryAdviceNoteForm}/>
+    <Stack.Screen name = "AddDriverForm" component= {AddDriverForm}/>
 
   </Stack.Navigator>
 
