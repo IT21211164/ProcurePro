@@ -11,80 +11,110 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import axios from "axios";
 
 export default function DeliveryAdviceNoteForm() {
 	const [orderId, setOrderId] = useState("");
-	const [driverId, setDriverId] = useState("");
+	const [driverName, setDriverName] = useState("");
 	const [deliveryDate, setDeliveryDate] = useState("");
 	const [productDetails, setProductDetails] = useState("");
 
+	const [fetchedOrderNumbers, setFetchedOrderNumbers] = useState([]);
+	const [fetchedDrivers, setFetchedDrivers] = useState([]);
+	const [selectedDriverId, setSelectedDriverId] = useState("");
+
 	const navigation = useNavigation();
 
-	const [orderNumbers, setOrderNumbers] = useState([]);
-
 	useEffect(() => {
-		fetchAllOrders(); // Fetch all orders when the component loads
+		fetchPlacedOrders();
+		fetchAvailableDrivers();
 	}, []);
 
-	const fetchAllOrders = async () => {
-		try {
-			const response = await fetch("http://localhost:3000/api/orders");
-			if (response.ok) {
-				const data = await response.json();
-				const allOrderNumbers = data.map((order) => order.orderNumber);
-				setOrderNumbers(allOrderNumbers);
-			} else {
-				// error msg
-			}
-		} catch (error) {
-			// Handle error
-		}
+	const fetchPlacedOrders = () => {
+		fetch("http://192.168.8.117:3000/api/orders/read", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((res) => {
+				var data = res;
+				const placedOrders = data.filter(
+					(order) => order.status === "Placed"
+				);
+				setFetchedOrderNumbers(placedOrders);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
-	// const fetchPlacedOrders = async () => {
-	// 	try {
-	// 		const response = await fetch("http://localhost:3000/api/orders");
-	// 		if (response.ok) {
-	// 			const data = await response.json();
-	// 			// Filter orders with status "Placed"
-	// 			const placedOrders = data.filter(
-	// 				(order) => order.status === "Placed"
-	// 			);
-	// 			const placedOrderNumbers = placedOrders.map(
-	// 				(order) => order.orderNumber
-	// 			);
-	// 			setOrderNumbers(placedOrderNumbers); // Set the filtered order numbers in state
-	// 		} else {
-	// 			// Handle any errors when the request is not successful
-	// 		}
-	// 	} catch (error) {
-	// 		// Handle fetch-related errors
-	// 	}
-	// };
+	const fetchAvailableDrivers = () => {
+		fetch("http://192.168.8.117:3000/api/drivers/read", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((res) => {
+				var data = res;
+				const availableDrivers = data.filter(
+					(driver) => driver.driverStatus === "Available"
+				);
+				setFetchedDrivers(availableDrivers);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	const handleSubmit = async () => {
 		// Create a new Delivery Advice Note object to send to the server
 		const deliveryAdviceNote = {
 			orderId,
-			driverId,
+			driverName,
 			deliveryDate,
 			productDetails,
 		};
 
 		try {
-			const response = await fetch(
-				"http://localhost:3000/api/deliveryAdviceNotes",
+			// First, create the delivery advice note record
+			const response = await axios.post(
+				"http://192.168.8.117:3000/api/deliveryAdviceNotes/create",
+				deliveryAdviceNote,
 				{
-					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify(deliveryAdviceNote),
 				}
 			);
 
-			if (response.ok) {
+			if (response.status === 201) {
 				// Successfully submitted the Delivery Advice Note
+				// Proceed to update the driver's status
+				try {
+					if (selectedDriverId) {
+						const updatedDriver = {
+							driverStatus: "Unavailable",
+						};
+
+						await axios.put(
+							`http://192.168.8.117:3000/api/drivers/update/${selectedDriverId}`,
+							updatedDriver
+						);
+
+						// Driver status updated successfully
+					}
+				} catch (error) {
+					// Handle errors when updating driver status
+					console.error("Error updating driver status:", error);
+				}
 			} else {
 				// Handle errors or display error messages
 				console.error("Error submitting the Delivery Advice Note");
@@ -94,17 +124,6 @@ export default function DeliveryAdviceNoteForm() {
 			console.error("An error occurred:", error);
 		}
 	};
-
-	// Sample list of available order IDs
-	const availableOrderIds = ["24563", "47895", "00241", "44563"];
-
-	// Sample list of available driver IDs
-	const availableDriverIds = [
-		"John Doe",
-		"Alice Smith",
-		"Bob Johnson",
-		"Carol Williams",
-	];
 
 	return (
 		<View style={styles.container}>
@@ -133,29 +152,15 @@ export default function DeliveryAdviceNoteForm() {
 							onValueChange={(itemValue) => setOrderId(itemValue)}
 							style={styles.picker}
 						>
-							<Picker.Item label="Select Order Number" value="" />
-							{availableOrderIds.map((order, index) => (
+							<Picker.Item label="Select Order ID" value="" />
+							{fetchedOrderNumbers.map((order, index) => (
 								<Picker.Item
-									label={order}
-									value={order}
+									label={order.orderNumber.toString()}
+									value={order.orderNumber.toString()}
 									key={index}
 								/>
 							))}
 						</Picker>
-						{/* <Picker
-							selectedValue={orderId}
-							onValueChange={(itemValue) => setOrderId(itemValue)}
-							style={styles.picker}
-						>
-							<Picker.Item label="Select Order ID" value="" />
-							{orderNumbers.map((orderNumber, index) => (
-								<Picker.Item
-									label={orderNumber.toString()}
-									value={orderNumber.toString()}
-									key={index}
-								/>
-							))}
-						</Picker> */}
 					</View>
 				</View>
 				<View style={styles.formGroup}>
@@ -169,9 +174,9 @@ export default function DeliveryAdviceNoteForm() {
 					</View>
 					<View style={styles.inputContainer}>
 						<Picker
-							selectedValue={driverId}
+							selectedValue={selectedDriverId}
 							onValueChange={(itemValue) =>
-								setDriverId(itemValue)
+								setSelectedDriverId(itemValue)
 							}
 							style={styles.picker}
 						>
@@ -179,10 +184,10 @@ export default function DeliveryAdviceNoteForm() {
 								label="Select Assigned Driver Name"
 								value=""
 							/>
-							{availableDriverIds.map((order, index) => (
+							{fetchedDrivers.map((driver, index) => (
 								<Picker.Item
-									label={order}
-									value={order}
+									label={driver.driverName}
+									value={driver._id} // Assuming "_id" is the MongoDB ID of the driver
 									key={index}
 								/>
 							))}
@@ -228,6 +233,7 @@ export default function DeliveryAdviceNoteForm() {
 						/>
 					</View>
 				</View>
+
 				<TouchableOpacity
 					style={styles.submitBtn}
 					onPress={handleSubmit}
@@ -308,7 +314,7 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		alignItems: "center",
 		marginVertical: 16,
-		marginTop: 180,
+		marginTop: 130,
 	},
 	submitText: {
 		fontSize: 18,

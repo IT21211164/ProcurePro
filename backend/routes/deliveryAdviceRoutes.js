@@ -9,18 +9,18 @@ const {
 } = require("../controllers/deliveryAdviceNoteController");
 
 // Create a new delivery advice note
-router.post("/", createDeliveryAdviceNote);
+router.post("/create", createDeliveryAdviceNote);
 
 // Get all delivery advice notes
-router.get("/", getDeliveryAdviceNotes);
+router.get("/read", getDeliveryAdviceNotes);
 
 // Get a specific delivery advice note by ID
-router.get("/:id", getDeliveryAdviceNoteById);
+router.get("/display/:id", getDeliveryAdviceNoteById);
 
 // Update a specific delivery advice note by ID
-router.put("/:id", updateDeliveryAdviceNote);
+router.put("/update/:id", updateDeliveryAdviceNote);
 
 // Delete a specific delivery advice note by ID
-router.delete("/:id", deleteDeliveryAdviceNote);
+router.delete("/delete/:id", deleteDeliveryAdviceNote);
 
 module.exports = router;

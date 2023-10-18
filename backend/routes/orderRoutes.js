@@ -10,10 +10,10 @@ const {
 } = require("../controllers/orderController");
 
 // Routes for orders
-router.post("/", createOrder);
-router.get("/", getOrders);
-router.get("/:id", getOrderById);
-router.put("/:id", updateOrder);
-router.delete("/:id", deleteOrder);
+router.post("/create", createOrder);
+router.get("/read", getOrders);
+router.get("/display/:id", getOrderById);
+router.put("/update/:id", updateOrder);
+router.delete("/delete/:id", deleteOrder);
 
 module.exports = router;
