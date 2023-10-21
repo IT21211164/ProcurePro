@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Text, View, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import Text1 from "@kaloraat/react-native-text";
-import FooterTabs from "../component/Nav/footertabs";
-import axiosInstance from "./api/axios";
+import FooterTabs from "../../component/Nav/footertabs";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 

@@ -2,82 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Text, View, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import Text1 from "@kaloraat/react-native-text";
-import FooterTabs from "../component/Nav/footertabs";
-import axiosInstance from "./api/axios";
-import UserInputs from "../component/signUp_userInputs/userInputs";
-
-
 import { useNavigation, useRoute } from "@react-navigation/native";
-
-
+import styles from "./createinvoice.style";
+import FooterTabs from "../../component/Nav/footertabs";
+import UserInputs from "../../component/signUp_userInputs/userInputs";
 
 const CreateInvoiceScreen = () => {
-    const styles = StyleSheet.create({
-        container: {
-            backgroundColor: "#FFC436",
-            height: 150, // Set the height to your desired value
-        },
-    });
-    const navigation = useNavigation();
-
-   
-
-
-    const styles1 = StyleSheet.create({
-        container: {
-            backgroundColor: "#FFF",
-            marginTop: -45,
-            borderTopLeftRadius: 40,
-            borderTopRightRadius: 40,
-            height: 800,
-            paddingTop: 25,
-        },
-    });
-
-    const styles2 = StyleSheet.create({
-        container: {
-            backgroundColor: "#F6F1F1",
-            marginTop: 10,
-            borderRadius: 20,
-            marginHorizontal: 20,
-            height: 150,
-            width: 200,
-            padding: 25,
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.3,
-            shadowRadius: 3,
-            
-        },
-    });
-
-    const styles3 = StyleSheet.create({
-        container: {
-            backgroundColor: "white",
-            marginTop: 4,
-            borderRadius: 5,
-            marginHorizontal: 20,
-            height: 70,
-            width: 320,
-            padding: 10,
-            paddingLeft: 20,
-            marginBottom: 4,
-            
-            
-        },
-    });
-
-    const styles7 = StyleSheet.create({
-        container: {
-          flex: 1,
-          backgroundColor: "#fff",
-          alignItems: "center",
-          justifyContent: "center",
-        },
-      });
-
-
-   
+    
     const [orders, setOrders] = useState([]);
     const [status, setStatus] = useState("Approved");
 
@@ -85,42 +16,17 @@ const CreateInvoiceScreen = () => {
     const [from, setFrom] = useState("");
     const [to , setTo] = useState("");
 
-    /*function getOrders(){
-        axios.get(`http://localhost:3000/orders/displayorders/${status}`).then((res)=>{
-            console.log(res.data);
-        setOrders(res.data);
-        }).catch((err)=>{
-            alert("sssd");
-        })
-    }
-
-    useEffect(()=>{
-        getOrders();
-    }, [])
-
-
-    const getOrders = async(e) => {
-
-        const response = await axiosInstance.post(`/orders/displayorders/${status}`).then((res)=>{
-            setOrders(res.data);
-            }).catch((err)=>{
-                alert("No oders");
-            })
-        console.log(response.data);
-    
-      }
-    
-      useEffect(()=>{
-        getOrders();
-      }, [])*/
-
+    const route = useRoute();
+    const orderId = route.params.orderId;
+    const totalAmount = route.params.totalAmount;
+    const siteLocation = route.params.siteLocation;
 
     return (
         <View style={{ height: "100%", backgroundColor:"#DCDCDC"}}>
             
            
-                <Text style={{alignSelf:"center", padding:12, marginTop:20, marginBottom:10, fontSize:24, fontWeight:"500"}}>Create Invoice</Text>
-
+            <Text style={{alignSelf:"center", padding:12, marginTop:20, marginBottom:10, fontSize:24, fontWeight:"500"}}>Create Invoice</Text>
+            <ScrollView>
                 <View style={{backgroundColor:"white", padding:8, marginLeft:15, marginRight:15, borderRadius:10}}>
                     < UserInputs name = "Bill From" value = {from} setValue = {setFrom} />
                     < UserInputs name = "Bill To" value = {to} setValue = {setTo}  />
@@ -176,35 +82,15 @@ const CreateInvoiceScreen = () => {
                 </View>
 
                 
-                <TouchableOpacity  style={{backgroundColor:"#f6d155", alignSelf:"center", padding:10, borderRadius:5, marginTop:10}}>
+                <TouchableOpacity  style={{backgroundColor:"#f6d155", alignSelf:"center", padding:10, borderRadius:5, marginTop:10,marginBottom:80}}>
                     <View>
                         <Text style={{fontSize:17, fontWeight:"500"}}>
                             Submit Invoice
                         </Text>
                     </View>
                 </TouchableOpacity>
-
-            
-
-
-
-
-
-
-                    {/*}
-                    <FlatList 
-                            data={orders}
-                            keyExtractor={(item) => item._id}
-                            renderItem={({ item }) => (
-                            <View>
-                                <Text>{item.siteLocation}</Text>
-                                <Text>{item.totalAmount}</Text>
-                               
-                            </View>
-                            )}
-                    />*/}
-
-                
+                <Text>c</Text>
+            </ScrollView>
           
       
 

@@ -25,7 +25,7 @@ const FooterTab = () => {
   };
 
   const navigateToOrders = () => {
-    navigation.navigate("OrderScreen");
+    navigation.navigate("SupplierOrderScreen");
   };
 
   const navigateToNotifications = () => {
