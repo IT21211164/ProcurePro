@@ -10,7 +10,7 @@ const UserInputs = ({name , value , setValue , secureTextEntry = false }) => {
             <Text style={{ fontSize: 16, fontWeight: "500" }} >{name}</Text>
             <TextInput 
             secureTextEntry = {secureTextEntry}
-            style = {{borderWidth: 0.5 , height : 35 , borderRadius: 10 , marginBottom: 10}} 
+            style = {{borderWidth: 0.5 , height : 35 , borderRadius: 10 , marginBottom: 10, paddingLeft:10}} 
 
             value={value}
             onChangeText={(text) => setValue(text)}> 

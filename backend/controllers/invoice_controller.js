@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler')
 
 const addInvoice = asyncHandler( async(req,res) => {
 
-    const {orderNo ,date ,billFrom, billTo, totalAmount} = req.body
+    const {date, orderNo, billFrom, billTo, siteLocation,totalAmount} = req.body
 
     const existing = await invoiceModel.findOne({orderNo})
     if(existing){
@@ -12,11 +12,12 @@ const addInvoice = asyncHandler( async(req,res) => {
     }
 
     const response = await invoiceModel.create({
-        orderNo: orderNo,
         date:date,
+        orderNo:orderNo,
         billFrom:billFrom,
         billTo:billTo,
-        totalAmount: totalAmount
+        siteLocation: siteLocation,
+        totalAmount: totalAmount,   
     })
 
 

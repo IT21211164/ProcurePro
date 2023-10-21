@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         width: "100%",
+        marginTop:100
     },
     ordercontainer: {
         backgroundColor: "white",

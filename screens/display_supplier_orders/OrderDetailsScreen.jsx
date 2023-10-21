@@ -23,9 +23,8 @@ const OrderDetailsScreen = () => {
     const totalAmount = route.params.totalAmount;
     const siteLocation = route.params.siteLocation;
     const [orderStatus, setOrderStatus] = useState(route.params.status);
-
-    const [isModalVisible, setModalVisible] = useState(false);
     const [btn, setBtn] = useState("");
+    const [updateForm, setUpdateForm] = useState(false);
 
     //update order status
     const updateFormHandler = async(e) => {
@@ -44,10 +43,11 @@ const OrderDetailsScreen = () => {
 
 
     //Handle Confirmation Screen
+    const [isModalVisible, setModalVisible] = useState(false);
+
     const openModal = (btnname) => {
       setModalVisible(true);
       setBtn(btnname);
-      setOrderStatus(btnname);
     
     };
   
@@ -56,9 +56,19 @@ const OrderDetailsScreen = () => {
     };
   
     const handleConfirm = () => {
-        updateFormHandler();
+        setOrderStatus(btn);
+        setUpdateForm(true);
         closeModal();
     };
+
+    useEffect(() => {
+        if (updateForm) {
+            updateFormHandler();
+            setUpdateForm(false); // Reset the flag
+        }
+    }, [updateForm]);
+
+
 
 
 

@@ -64,7 +64,7 @@ const SupplierOrderScreen = () => {
                 </TouchableOpacity>
             </View>
                 
-            <View style={{ height: 400 , padding :20 , alignItems:"center"}}>
+            <View style={{padding :20 , alignItems:"center", marginBottom:175}}>
 
                 <FlatList 
                         data={orders.slice().reverse()}
@@ -85,9 +85,9 @@ const SupplierOrderScreen = () => {
             </View>   
       
 
-            <SafeAreaView style={styles.footertab}>
+            <View style={styles.footertab}>
                 <FooterTabs />
-            </SafeAreaView>
+            </View>
         </View>
     );
 }

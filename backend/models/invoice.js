@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const invoiceTestSchema = new mongoose.Schema({
-  Date:{
-    type: Date, default:Date.now
+  date:{
+    type: String
   },
   orderNo: {
     type: String, required: true
@@ -13,12 +13,15 @@ const invoiceTestSchema = new mongoose.Schema({
   billTo: {
     type: String, required: true
   },
+  siteLocation:{
+    type: String, required: true
+  },
   totalAmount: {
     type: Number, required: true
   }
   
 });
 
-const invoice = mongoose.model("invoice", invoiceTestSchema);
+const invoice = mongoose.model("invoice3", invoiceTestSchema);
 
 module.exports = invoice;
