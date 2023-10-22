@@ -29,11 +29,14 @@ const OrderDetailsScreen = () => {
     //update order status
     const updateFormHandler = async(e) => {
 
-        axios.put(`http://192.168.8.101:3000/api/orders/updateorderstatus/${orderId}`, {orderStatus})
+        axios.put(`http://192.168.8.100:3000/api/orders/updateorderstatus/${orderId}`, {orderStatus})
         .then((res) => {
             if(res.data){
-                alert('Order Accepted')
-              }
+                if(orderStatus == "Accepted")
+                    alert('Order Accepted')
+                else
+                alert('Order Rejected')
+            }
               else{
                 alert('something went wrong') 
             }
@@ -90,6 +93,7 @@ const OrderDetailsScreen = () => {
 
                 </View>
 
+            <ScrollView style={{marginBottom:80}}>  
                 <View style={styles.itemHeader}>
                     <Text style={{fontWeight:"500", fontSize:15}}>Order Items Information</Text>
                     <View style={{flexDirection:'row', padding:10, alignSelf: "center"}}>
@@ -144,6 +148,7 @@ const OrderDetailsScreen = () => {
                 </View>
 
                 {orderStatus == "Accepted" ? 
+                <View>
                 <TouchableOpacity onPress={() => navigateToInvoiceScreen(orderId,totalAmount,siteLocation)} style={{backgroundColor:"#f6d155", alignSelf:"center", padding:10, borderRadius:5, marginTop:10}}>
                     <View>
                         <Text style={{fontSize:17, fontWeight:"500"}}>
@@ -151,6 +156,7 @@ const OrderDetailsScreen = () => {
                         </Text>
                     </View>
                 </TouchableOpacity>
+                </View>
                 :
                 orderStatus=="Rejected" ? ""
                 :
@@ -171,6 +177,7 @@ const OrderDetailsScreen = () => {
                     </TouchableOpacity>
                 </View>
                 }
+            </ScrollView>
                 
 
                 <AcceptRejectConfirmationScreen

@@ -30,7 +30,7 @@ const CreateInvoiceScreen = () => {
 
     const invoiceFormHandler = async(e) => {
  
-        axios.post("http://192.168.8.101:3000/api/invoice/addInvoice", {date,orderNo,billFrom,billTo,siteLocation,totalAmount})
+        axios.post("http://192.168.8.100:3000/api/invoice/addInvoice", {date,orderNo,billFrom,billTo,siteLocation,totalAmount})
         .then((res) => {
             if(res.data){
                 alert('Invoice created')

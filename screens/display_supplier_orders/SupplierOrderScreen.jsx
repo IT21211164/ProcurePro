@@ -12,21 +12,22 @@ import styles from "./supplierorders.style";
 const SupplierOrderScreen = () => {
 
     const navigation = useNavigation();
+    const [orders, setOrders] = useState([]);
+    const [filterCriteria, setFilterCriteria] = useState(null);
+    const [status, setStatus] = useState("Not Approved");
 
     
     const navigateToOrderDetails = (orderId,totalAmount,siteLocation,status) => {
         navigation.navigate("OrderDetailsScreen", {orderId,totalAmount,siteLocation,status});
     };
 
+    const filteredOrders = filterCriteria
+    ? orders.filter(order => order.status === filterCriteria)
+    : orders;
 
-
-
-   
-    const [orders, setOrders] = useState([]);
-    const [status, setStatus] = useState("Not Approved");
 
     function getOrders(){
-        axios.get(`http://192.168.8.101:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
+        axios.get(`http://192.168.8.100:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
             console.log(res.data);
             setOrders(res.data);
         }).catch((err)=>{
@@ -53,13 +54,13 @@ const SupplierOrderScreen = () => {
             </View>
               
             <View style={{flexDirection: 'row', marginLeft:17}}>
-                <TouchableOpacity style={styles.column}>
+                <TouchableOpacity style={styles.column} onPress={()=>setFilterCriteria(null)}>
                     <Text style={styles.columntext}>All Orders</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.column}>
+                <TouchableOpacity style={styles.column} onPress={()=>setFilterCriteria('Accepted')}>
                     <Text style={styles.columntext}>Accepted</Text>   
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.column}> 
+                <TouchableOpacity style={styles.column} onPress={()=>setFilterCriteria('Rejected')}> 
                     <Text style={styles.columntext}>Rejected</Text>
                 </TouchableOpacity>
             </View>
@@ -67,7 +68,7 @@ const SupplierOrderScreen = () => {
             <View style={{padding :20 , alignItems:"center", marginBottom:175}}>
 
                 <FlatList 
-                        data={orders.slice().reverse()}
+                        data={filteredOrders.slice().reverse()}
                         keyExtractor={(item) => item._id}
                         renderItem={({ item }) => (
 
