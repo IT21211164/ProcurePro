@@ -1,6 +1,6 @@
-const invoiceModel = require('../models/invoice')
+const invoiceModel = require('../../models/invoice')
 
-module.exports = async function invoice_controller(orderNo ,date ,billFrom, billTo, totalAmount){
+module.exports = async function invoice_controller( orderNo ,billFrom, billTo,siteLocation, totalAmount){
 
     const existing = await invoiceModel.findOne({ orderNo });
     if(existing){
@@ -8,10 +8,11 @@ module.exports = async function invoice_controller(orderNo ,date ,billFrom, bill
     }
 
     const invoice = new invoiceModel({
+
         orderNo,
-        date,
         billFrom,
         billTo,
+        siteLocation,
         totalAmount
     })
     await invoice.save();

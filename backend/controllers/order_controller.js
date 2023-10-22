@@ -1,6 +1,7 @@
 const orderModel = require('../models/order')
 const asyncHandler = require('express-async-handler')
 
+/*
 //Create order
 const addOrder = asyncHandler( async(req,res) => {
 
@@ -21,7 +22,7 @@ const addOrder = asyncHandler( async(req,res) => {
     else{
         res.status(403).json('article could not be created!')
     }
-})
+})*/
 
 
 // read supplier orders
@@ -33,7 +34,7 @@ const displayOrders = asyncHandler(async(req,res)=>{
         res.status(200).json(response)
     }
     else{
-        res.status(401).json('something is wrong orders can not fetch')
+        res.status(401).json('Something is wrong. Orders cannot be fetched')
     }
 })
 
@@ -53,11 +54,11 @@ const updateOrderStatus = asyncHandler(async(req,res)=>{
             res.status(200).json(response)
         }
         else{
-            res.status(403).json('order can not be updated')
+            res.status(403).json('Order cannot be updated')
         }
     }
     else{
-        res.status(404).json('order does not exist in the database')
+        res.status(404).json('Order does not exist in the database')
     }
 
 })
@@ -65,7 +66,7 @@ const updateOrderStatus = asyncHandler(async(req,res)=>{
 
 
 module.exports = {
-    addOrder,
+    //addOrder,
     displayOrders,
     updateOrderStatus
 }

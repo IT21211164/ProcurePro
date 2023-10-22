@@ -27,7 +27,7 @@ const SupplierOrderScreen = () => {
 
 
     function getOrders(){
-        axios.get(`http://192.168.8.100:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
+        axios.get(`http://192.168.8.101:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
             console.log(res.data);
             setOrders(res.data);
         }).catch((err)=>{

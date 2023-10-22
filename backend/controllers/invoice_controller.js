@@ -6,10 +6,10 @@ const addInvoice = asyncHandler( async(req,res) => {
 
     const {date, orderNo, billFrom, billTo, siteLocation,totalAmount} = req.body
 
-    const existing = await invoiceModel.findOne({orderNo})
+   /* const existing = await invoiceModel.findOne({orderNo})
     if(existing){
         throw new Error(`An invoice is already created for Order Number ${orderNo}`)
-    }
+    }*/
 
     const response = await invoiceModel.create({
         date:date,

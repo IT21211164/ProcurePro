@@ -5,7 +5,6 @@ import SignIn from "./screens/signIn";
 import SiteManagerHomeScreen from "./screens/SiteManagerHomeScreen";
 import SupplierHomeScreen from "./screens/SupplierHomeScreen"
 import SupplierOrderScreen from "./screens/display_supplier_orders/SupplierOrderScreen"
-import tempOrderDetailsScreen from "./screens/display_supplier_orders/tempOrderDetailsScreen"
 import CreateInvoiceScreen from "./screens/create_invoice/CreateInvoiceScreen"
 import OrderDetailsScreen from "./screens/display_supplier_orders/OrderDetailsScreen"
 
@@ -17,13 +16,12 @@ export default function App() {
 <NavigationContainer>
 
 
-  <Stack.Navigator initialRouteName="SupplierHomeScreen" screenOptions={{headerShown: false}}>
+  <Stack.Navigator initialRouteName="SupplierOrderScreen" screenOptions={{headerShown: false}}>
 
     <Stack.Screen name = "SignIn" component = {SignIn} />
     <Stack.Screen name = "SiteManagerHomeScreen" component = {SiteManagerHomeScreen} />
     <Stack.Screen name = "SupplierHomeScreen" component = {SupplierHomeScreen} />
     <Stack.Screen name = "SupplierOrderScreen" component = {SupplierOrderScreen} />
-    <Stack.Screen name = "tempOrderDetailsScreen" component = {tempOrderDetailsScreen} />
     <Stack.Screen name = "CreateInvoiceScreen" component = {CreateInvoiceScreen} />
     <Stack.Screen name = "OrderDetailsScreen" component = {OrderDetailsScreen} />
 

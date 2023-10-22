@@ -29,7 +29,7 @@ const OrderDetailsScreen = () => {
     //update order status
     const updateFormHandler = async(e) => {
 
-        axios.put(`http://192.168.8.100:3000/api/orders/updateorderstatus/${orderId}`, {orderStatus})
+        axios.put(`http://192.168.8.101:3000/api/orders/updateorderstatus/${orderId}`, {orderStatus})
         .then((res) => {
             if(res.data){
                 if(orderStatus == "Accepted")
