@@ -3,8 +3,8 @@ const { updateOrderStatus, displayOrders } = require('../order_controller');
 
 describe('Update Order Status Controller', () => {
   const mockRequest = {
-    params: { id: '123' }, // Replace with a valid order ID
-    body: { orderStatus: 'Accepted' }, // Replace with the desired status
+    params: { id: '123' },
+    body: { orderStatus: 'Accepted' }, 
   };
   const mockResponse = {
     status: jest.fn(() => mockResponse),

@@ -16,16 +16,18 @@ const SupplierOrderScreen = () => {
     const [filterCriteria, setFilterCriteria] = useState(null);
     const [status, setStatus] = useState("Not Approved");
 
-    
+
     const navigateToOrderDetails = (orderId,item,qty,price,totalAmount,siteLocation,status) => {
         navigation.navigate("OrderDetailsScreen", {orderId,item,qty,price,totalAmount,siteLocation,status});
     };
 
+    //filter out orders by status
     const filteredOrders = filterCriteria
     ? orders.filter(order => order.status === filterCriteria)
     : orders;
 
 
+    //get all orders except "Not Approved" orders
     function getOrders(){
         axios.get(`http://192.168.8.100:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
             console.log(res.data);
@@ -39,6 +41,7 @@ const SupplierOrderScreen = () => {
         getOrders();
     }, [])
 
+    //reload the page again
     useFocusEffect(
         React.useCallback(() => {
           getOrders();

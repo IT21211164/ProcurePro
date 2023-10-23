@@ -15,8 +15,7 @@ const OrderDetailsScreen = () => {
         navigation.navigate("CreateInvoiceScreen", {orderId,item,qty,price,totalAmount,siteLocation});
     };
 
-    const [orders, setOrders] = useState([]);
-    
+    const [orders, setOrders] = useState([]);    
 
     const route = useRoute();
     const orderId = route.params.orderId;
@@ -29,7 +28,7 @@ const OrderDetailsScreen = () => {
     const [btn, setBtn] = useState("");
     const [updateForm, setUpdateForm] = useState(false);
 
-    //update order status
+    //update order status function
     const updateFormHandler = async(e) => {
 
         axios.put(`http://192.168.8.100:3000/api/orders/updateorderstatus/${orderId}`, {orderStatus})
@@ -44,7 +43,6 @@ const OrderDetailsScreen = () => {
                 alert('something went wrong') 
             }
         })
-    
     }
 
 
@@ -73,8 +71,6 @@ const OrderDetailsScreen = () => {
             setUpdateForm(false); // Reset the flag
         }
     }, [updateForm]);
-
-
 
 
 

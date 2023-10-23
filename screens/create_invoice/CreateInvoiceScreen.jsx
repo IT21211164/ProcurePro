@@ -10,6 +10,7 @@ import CreateInvoiceConfirmationScreen from './CreateInvoiceConfirmationScreen';
 
 const CreateInvoiceScreen = () => {
 
+    //get current date
     const currentDate = new Date();
 
     const day = currentDate.getDate();
@@ -31,6 +32,7 @@ const CreateInvoiceScreen = () => {
     const qty = route.params.qty;
     const price = route.params.price;
 
+    //create invoice function
     const invoiceFormHandler = async(e) => {
  
         axios.post("http://192.168.8.100:3000/api/invoice/addInvoice", {date,orderNo,billFrom,billTo,siteLocation,totalAmount})
@@ -43,9 +45,6 @@ const CreateInvoiceScreen = () => {
             }
         })
     }
-
-
-
 
     //Handle Confirmation Screen
     const [isModalVisible, setModalVisible] = useState(false);

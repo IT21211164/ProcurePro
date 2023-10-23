@@ -15,7 +15,6 @@ app.use(express.urlencoded({extended:true}))
 app.use('/auth', authRoutes);
 app.use('/api/orders', require('./routes/order_route'));
 app.use('/api/invoice', require('./routes/invoice_route'));
-//app.use('/api/invoice', require('./controllers'));
 
 
 app.use(errorHandler)

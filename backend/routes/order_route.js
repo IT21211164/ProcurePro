@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.get("/displayorders", OrderController.displayOrders);
 router.put("/updateorderstatus/:id", OrderController.updateOrderStatus);
-router.post('/addorder', OrderController.addOrder);
+//router.post('/addorder', OrderController.addOrder);
 
 module.exports = router;
