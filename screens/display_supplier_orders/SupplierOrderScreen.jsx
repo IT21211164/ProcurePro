@@ -17,8 +17,8 @@ const SupplierOrderScreen = () => {
     const [status, setStatus] = useState("Not Approved");
 
     
-    const navigateToOrderDetails = (orderId,totalAmount,siteLocation,status) => {
-        navigation.navigate("OrderDetailsScreen", {orderId,totalAmount,siteLocation,status});
+    const navigateToOrderDetails = (orderId,item,qty,price,totalAmount,siteLocation,status) => {
+        navigation.navigate("OrderDetailsScreen", {orderId,item,qty,price,totalAmount,siteLocation,status});
     };
 
     const filteredOrders = filterCriteria
@@ -27,7 +27,7 @@ const SupplierOrderScreen = () => {
 
 
     function getOrders(){
-        axios.get(`http://192.168.8.101:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
+        axios.get(`http://192.168.8.100:3000/api/orders/displayorders?status_ne=${status}`).then((res)=>{
             console.log(res.data);
             setOrders(res.data);
         }).catch((err)=>{
@@ -72,14 +72,13 @@ const SupplierOrderScreen = () => {
                         keyExtractor={(item) => item._id}
                         renderItem={({ item }) => (
 
-                    <TouchableOpacity style={styles.ordercontainer} onPress={()=>navigateToOrderDetails(item._id, item.totalAmount,item.siteLocation,item.status)}>
+                    <TouchableOpacity style={styles.ordercontainer} onPress={()=>navigateToOrderDetails(item._id, item.item, item.quantity, item.price, item.totalAmount, item.siteLocation, item.status)}>
                             
                         <Text style={styles.amount}>{item.totalAmount}.00</Text>
                         <Text style={styles.site}>{item.siteLocation}</Text>
                         <Text style={item.status == "Accepted" ? styles.acceptstatus: styles.rejectstatus }>{item.status == "Placed" ? "" : item.status}</Text>
 
                     </TouchableOpacity>
-
                 )}
                 />      
                 

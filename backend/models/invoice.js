@@ -22,6 +22,6 @@ const invoiceTestSchema = new mongoose.Schema({
   
 });
 
-const invoice = mongoose.model("invoice3", invoiceTestSchema);
+const invoice = mongoose.model("invoice", invoiceTestSchema);
 
 module.exports = invoice;

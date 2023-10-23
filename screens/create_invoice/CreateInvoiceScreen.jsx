@@ -27,10 +27,13 @@ const CreateInvoiceScreen = () => {
     const orderNo = route.params.orderId;
     const totalAmount = route.params.totalAmount;
     const siteLocation = route.params.siteLocation;
+    const item = route.params.item;
+    const qty = route.params.qty;
+    const price = route.params.price;
 
     const invoiceFormHandler = async(e) => {
  
-        axios.post("http://192.168.8.101:3000/api/invoice/addInvoice", {date,orderNo,billFrom,billTo,siteLocation,totalAmount})
+        axios.post("http://192.168.8.100:3000/api/invoice/addInvoice", {date,orderNo,billFrom,billTo,siteLocation,totalAmount})
         .then((res) => {
             if(res.data){
                 alert('Invoice created')
@@ -77,6 +80,8 @@ const CreateInvoiceScreen = () => {
                 <View style={{backgroundColor:"white", padding:12, margin:15,marginTop:8,marginBottom:8, borderRadius:10}}>
                     <Text style={{fontWeight:"500", fontSize:15}}>Order Information</Text>
 
+                    
+
                     <View style={{flexDirection:'row', padding:10, alignSelf: "center"}}>
                         <Text style={{marginTop:10, marginRight:14, fontWeight:"500"}}>Ref No</Text>
                         <Text style={{marginTop:10, marginLeft:45, fontWeight:"500"}}>{orderNo}</Text>
@@ -90,29 +95,11 @@ const CreateInvoiceScreen = () => {
 
 
                     <View style={{flexDirection:'row', padding:10, marginTop:5, backgroundColor:"#FFFAF0", width:310}}>
-                        <Text style={{marginTop:10,width:140}}>Holcim Cement (50kg)</Text>
+                        <Text style={{marginTop:10,width:140}}>{item}</Text>
 
                         <View  style={{flexDirection:'row',marginTop:0,end:-55,  alignSelf:"flex-end"}}>
-                            <Text style={{marginTop:10, marginRight:46}}>70</Text>
-                            <Text style={{marginTop:10}}>1400</Text>
-                        </View>
-                    </View>
-
-                    <View style={{flexDirection:'row', padding:10, marginTop:5, backgroundColor:"#FFFAF0"}}>
-                        <Text style={{marginTop:10, width:140}}>Red Bricks</Text>
-
-                        <View  style={{flexDirection:'row',marginTop:0, end:-55}}>
-                            <Text style={{marginTop:10, marginRight:46}}>95</Text>
-                            <Text style={{marginTop:10}}>80</Text>
-                        </View>
-                    </View>
-
-                    <View style={{flexDirection:'row', padding:10, marginTop:5, backgroundColor:"#FFFAF0"}}>
-                        <Text style={{marginTop:10, width:140}}>Rhino Roofing Sheet</Text>
-
-                        <View  style={{flexDirection:'row',marginTop:0, end:-55}}>
-                            <Text style={{marginTop:10, marginRight:46}}>20</Text>
-                            <Text style={{marginTop:10}}>1150</Text>
+                            <Text style={{marginTop:10, marginRight:46}}>{qty}</Text>
+                            <Text style={{marginTop:10}}>{price}</Text>
                         </View>
                     </View>
 

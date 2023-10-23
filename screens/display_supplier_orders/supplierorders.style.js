@@ -95,25 +95,25 @@ const styles = StyleSheet.create({
         alignSelf:"center"
     },
     orderStatusAccept:{
-        fontSize: 20,
+        fontSize: 22,
         justifyContent: "center",
         alignSelf: "center",
-        marginTop: 20,
-        marginBottom:10,
+        marginTop: 30,
+        marginBottom:20,
         fontWeight:"bold",
         color:"green"
     },
     orderStatusReject:{
-        fontSize: 20,
+        fontSize: 22,
         justifyContent: "center",
         alignSelf: "center",
-        marginTop: 20,
-        marginBottom:10,
+        marginTop: 30,
+        marginBottom:20,
         fontWeight:"bold",
         color:"#708090"
     },
     topData:{
-        fontSize: 15,
+        fontSize: 17,
         alignSelf: "center",
         marginBottom:10,
         fontWeight:"bold",
