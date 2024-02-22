@@ -2,8 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import SignIn from "./screens/signIn";
-import SiteManagerHomeScreen from "./screens/SiteManagerHomeScreen";
-import SupplierHomeScreen from "./screens/SupplierHomeScreen"
+import SiteManagerHomeScreen from "./screens/siteManagerHomeScreen";
+import SupplierHomeScreen from "./screens/supplierHomeScreen"
 import SupplierOrderScreen from "./screens/display_supplier_orders/SupplierOrderScreen"
 import CreateInvoiceScreen from "./screens/create_invoice/CreateInvoiceScreen"
 import OrderDetailsScreen from "./screens/display_supplier_orders/OrderDetailsScreen"
